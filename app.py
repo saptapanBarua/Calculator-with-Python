@@ -11,8 +11,11 @@ def multiplication(n1, n2):
     print(f'{n1}*{n2}={result}')
 
 def division(n1, n2):
-    result=n1/n2
-    print(f'{n1}/{n2}={result}')
+    if n2==0.0:
+        print('Can\'t be divided by zero.')
+    else:
+        result=n1/n2
+        print(f'{n1}/{n2}={result}')
 
 while(True):
     print('''
