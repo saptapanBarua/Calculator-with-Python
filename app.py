@@ -11,11 +11,18 @@ def multiplication(n1, n2):
     print(f'{n1} * {n2} = {result}')
 
 def division(n1, n2):
-    if n2==0.0:
-        print('Can\'t be divided by zero.')
-    else:
+    try:
         result=n1/n2
         print(f'{n1} / {n2} = {result}')
+    except ZeroDivisionError:
+        print('Can\'t be divided by zero.')
+        
+operations={
+    '1': addition,
+    '2': subtraction,
+    '3': multiplication,
+    '4': division
+}
 
 while(True):
     print('''
@@ -31,18 +38,14 @@ while(True):
         or press Q or q to exit the calculator''')
     choice=input("\nEnter your choice : ")
 
-    if (choice=='Q' or choice=='q'):
+    if (choice.lower()=='q'):
         break
+    elif choice in operations:
+        try:
+            num1=float(input("Enter num1 : "))
+            num2=float(input("Enter num2 : "))
+            operations[choice](num1, num2)
+        except ValueError:
+            print('\n>>>Invalid Input. Please enter numbers only.<<<')
     else:
-        num1=float(input("Enter num1 : "))
-        num2=float(input("Enter num2 : "))
-        if choice=='1':
-            addition(num1, num2)
-        elif choice=='2':
-            subtraction(num1, num2)
-        elif choice=='3':
-            multiplication(num1, num2)
-        elif choice=='4':
-            division(num1, num2)    
-        else:
-            print('Invalid choice')
+        print('\n>>>Invalid choice option. Please choose a valid operation.<<<')
